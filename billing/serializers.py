@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from drf_spectacular.utils import extend_schema_field
 from .models import HMOProvider, PatientHMOEnrollment
 from patients.models import Patient
 
@@ -12,20 +13,21 @@ class HMOProviderSerializer(serializers.ModelSerializer):
         ]
 
 
-class PatientBriefSerializer(serializers.ModelSerializer):
-    full_name = serializers.SerializerMethodResource if False else serializers.SerializerMethodField()
+class BillingPatientBriefSerializer(serializers.ModelSerializer):
+    full_name = serializers.SerializerMethodField()
 
     class Meta:
         model = Patient
         fields = ['id', 'patient_id', 'first_name', 'last_name', 'full_name', 'gender', 'phone']
 
+    @extend_schema_field(serializers.CharField())
     def get_full_name(self, obj):
         return f"{obj.first_name} {obj.last_name}".strip()
 
 
 class PatientHMOEnrollmentSerializer(serializers.ModelSerializer):
     hmo_provider_detail = HMOProviderSerializer(source='hmo_provider', read_only=True)
-    patient_detail = PatientBriefSerializer(source='patient', read_only=True)
+    patient_detail = BillingPatientBriefSerializer(source='patient', read_only=True)
 
     class Meta:
         model = PatientHMOEnrollment
