@@ -1,9 +1,28 @@
 # Kolak ERM — Frontend Integration Guide
 
 > [!IMPORTANT]
-> **Base API URL**: `http://127.0.0.1:8000/api/`  
-> **Interactive Swagger UI**: `http://127.0.0.1:8000/api/docs/`  
-> **ReDoc Documentation**: `http://127.0.0.1:8000/api/redoc/`
+> **Base API URL**: `http://localhost:8000/api/`  
+> **Interactive Swagger UI**: `http://localhost:8000/api/docs/`  
+> **ReDoc Documentation**: `http://localhost:8000/api/redoc/`  
+> **Django Admin Portal**: `http://localhost:8000/admin/`
+
+---
+
+## ⚡ Quick Start for Frontend Developers (1-Click Batch Files)
+
+You don't need deep Django knowledge to run the backend locally. Two batch files are provided in the project root:
+
+1. **`setup.bat`** (Run Once on Initial Setup):
+   - Double-click `setup.bat` in the project root.
+   - Automatically creates the Python virtual environment (`venv`), installs all dependencies, runs database migrations, seeds hospital roles & departments, and creates a default superadmin user.
+   
+2. **`run_server.bat`** (Run Anytime to Start Server):
+   - Double-click `run_server.bat` anytime you want to work with the backend API.
+   - Automatically activates `venv`, checks for migrations, and launches the server at `http://localhost:8000/`.
+
+> **Default Admin Credentials**:
+> - **Username**: `admin` (or `admin@kolak.com`)
+> - **Password**: `adminpassword123`
 
 ---
 
